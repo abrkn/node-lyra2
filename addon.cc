@@ -56,7 +56,11 @@ NAN_METHOD(Hash) {
   Local<Object> output_buffer = Nan::NewBuffer(32).ToLocalChecked();
   char * output = node::Buffer::Data(output_buffer);
 
-  LYRA2((unsigned char * )output, 32, (unsigned char * )input, input_len, (unsigned char * )input, input_len, t, r, c);
+  int result = LYRA2((unsigned char * )output, 32, (unsigned char * )input, input_len, (unsigned char * )input, input_len, t, r, c);
+
+  if (result != 0) {
+    Nan::ThrowError("Non-zero return code from LYRA2");
+  }
 
   info.GetReturnValue().Set(output_buffer);
 }
