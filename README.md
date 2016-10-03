@@ -1,11 +1,20 @@
-# node-lyra
+# node-lyra2
 
-Lyra2 from node.js. Testing is done with the node.js version specified in `.nvmrc`
+[![Build Status](https://travis-ci.org/abrkn/node-lyra2.svg?branch=master)](https://travis-ci.org/abrkn/node-lyra2)
 
-This library is currently -not- functional. To test, run:
+Lyra2 addon for Node.js
 
-```npm test```
+## Testing
 
+```bash
+npm test
+```
+
+## Author
+
+Andreas Brekken <andreas@brekken.com>
+
+ZCoin Tips: [aG4eX3rAV7bLG3Hre64PYADwtVyBNj4AHe](https://zcoin.rocks/address/aG4eX3rAV7bLG3Hre64PYADwtVyBNj4AHe)
 
 ## License
 
