@@ -20,10 +20,8 @@
 test('lyra hash', () => {
   const lyra2 = require('..');
   const input = new Buffer('fest');
-  const output = lyra2.hash(input, 2, 1000, 256);
   const expected = '721ce6e778dc308c37f09ae03c189e68e774b90421d9fdd34f91adfb4cac2a5d';
+  const actual = lyra2.hash(input, 2, 1000, 256);
 
-	console.log(typeof output, !!output, output);
-
-  expect(output.toString('hex')).toBe(expected);
+  expect(actual.toString('hex')).toBe(expected);
 });
