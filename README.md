@@ -4,6 +4,12 @@
 
 Lyra2 addon for Node.js
 
+## Installing
+
+```bash
+npm install lyra2
+```
+
 ## Testing
 
 ```bash
