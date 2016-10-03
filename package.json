@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "fetch-lyra2-source": "node_modules/.bin/mkdirp lib; node_modules/.bin/download http://github.com/bsdphk/PHC/raw/master/Lyra2/src/Lyra2.c > lib/Lyra2.c; node_modules/.bin/download http://github.com/bsdphk/PHC/raw/master/Lyra2/src/Lyra2.h > lib/Lyra2.h; node_modules/.bin/download http://github.com/bsdphk/PHC/raw/master/Lyra2/src/Sponge.h > lib/Sponge.h; node_modules/.bin/download http://github.com/bsdphk/PHC/raw/master/Lyra2/src/Sponge.c > lib/Sponge.c"
+    "fetch-lyra2-source": "node_modules/.bin/mkdirp lib; node_modules/.bin/download http://github.com/bsdphk/PHC/raw/master/Lyra2/src/Lyra2.c > lib/Lyra2.c; node_modules/.bin/download http://github.com/bsdphk/PHC/raw/master/Lyra2/src/Lyra2.h > lib/Lyra2.h; node_modules/.bin/download http://github.com/bsdphk/PHC/raw/master/Lyra2/src/Sponge.h > lib/Sponge.h; node_modules/.bin/download http://github.com/bsdphk/PHC/raw/master/Lyra2/src/Sponge.c > lib/Sponge.c",
+		"compile-create-vectors": "gcc -Wall lib/Lyra2.c lib/Sponge.c create-vectors.c -o create-vectors"
   },
   "keywords": [
     "lyra2",

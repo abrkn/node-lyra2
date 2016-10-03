@@ -45,3 +45,4 @@ jspm_packages
 
 # Output from node-gyp
 build
+create-vectors

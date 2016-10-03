@@ -72,6 +72,7 @@ inline void print64(uint64_t *v) {
  * @return 0 if the key is generated correctly; -1 if there is an error (usually due to lack of memory for allocation)
  */
 int LYRA2(unsigned char *K, int kLen, const unsigned char *pwd, int pwdlen, const unsigned char *salt, int saltlen, int timeCost, int nRows, int nCols) {
+
     //============================= Basic variables ============================//
     int row = 2; //index of row to be processed
     int prev = 1; //index of prev (last row ever computed/modified)
