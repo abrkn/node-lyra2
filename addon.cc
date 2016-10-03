@@ -53,17 +53,12 @@ NAN_METHOD(Hash) {
   char * input = node::Buffer::Data(input_buffer);
   uint32_t input_len = node::Buffer::Length(input_buffer);
 
-  unsigned char output[32];
+  Local<Object> output_buffer = Nan::NewBuffer(32).ToLocalChecked();
+  char * output = node::Buffer::Data(output_buffer);
 
-  LYRA2(output, 32, (unsigned char * )input, input_len, (unsigned char * )input, input_len, t, r, c);
+  LYRA2((unsigned char * )output, 32, (unsigned char * )input, input_len, (unsigned char * )input, input_len, t, r, c);
 
-  info.GetReturnValue().Set(
-       Nan::NewBuffer((char *)output, 32).ToLocalChecked());
-
-  // output_buffer * = Nan::NewBuffer(output, 32);
-
-  // info.GetReturnValue().Set(t * r * c);
-  // info.GetReturnValue().Set(output_buffer);
+  info.GetReturnValue().Set(output_buffer);
 }
 
 NAN_MODULE_INIT(InitAll) {
