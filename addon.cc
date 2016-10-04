@@ -22,41 +22,45 @@ NAN_METHOD(Hash) {
   // double est = Estimate(points);
   // Isolate* isolate = info.GetIsolate();
 
-  Local<Object> input_buffer = info[0]->ToObject();
-
-  if (info.Length() < 4) {
-    Nan::ThrowError("Wrong number of arguments");
+  if (info.Length() < 5) {
+    Nan::ThrowError("Wrong number of arguments. Expected 5");
     return;
   }
 
-  if (!info[1]->IsNumber()) {
-    Nan::ThrowError("Second argument should be a number (T)");
-    return;
-  }
-
-  int t = info[1]->NumberValue();
+  Local<Object> password_buffer = info[0]->ToObject();
+  Local<Object> salt_buffer = info[1]->ToObject();
 
   if (!info[2]->IsNumber()) {
-    Nan::ThrowError("Third argument should be a number (R)");
+    Nan::ThrowError("Argument 3 should be a number (T)");
     return;
   }
 
-  int r = info[2]->NumberValue();
+  int t = info[2]->NumberValue();
 
   if (!info[3]->IsNumber()) {
-    Nan::ThrowError("Fourth argument should be a number (C)");
+    Nan::ThrowError("Argument 4 should be a number (R)");
     return;
   }
 
-  int c = info[3]->NumberValue();
+  int r = info[3]->NumberValue();
 
-  char * input = node::Buffer::Data(input_buffer);
-  uint32_t input_len = node::Buffer::Length(input_buffer);
+  if (!info[4]->IsNumber()) {
+    Nan::ThrowError("Argument 5 should be a number (C)");
+    return;
+  }
+
+  int c = info[4]->NumberValue();
+
+  char * password = node::Buffer::Data(password_buffer);
+  char * salt = node::Buffer::Data(salt_buffer);
+
+  uint32_t password_len = node::Buffer::Length(password_buffer);
+  uint32_t salt_len = node::Buffer::Length(salt_buffer);
 
   Local<Object> output_buffer = Nan::NewBuffer(32).ToLocalChecked();
   char * output = node::Buffer::Data(output_buffer);
 
-  int result = LYRA2((unsigned char * )output, 32, (unsigned char * )input, input_len, (unsigned char * )input, input_len, t, r, c);
+  int result = LYRA2((unsigned char * )output, 32, (unsigned char * )password, password_len, (unsigned char * )salt, salt_len, t, r, c);
 
   if (result != 0) {
     Nan::ThrowError("Non-zero return code from LYRA2");

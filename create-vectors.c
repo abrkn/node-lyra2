@@ -9,10 +9,10 @@ int main(int argc, char *argv[]) {
   int kLen = 32;
   unsigned char *K = malloc(kLen);
 
-  unsigned char * pwd = (unsigned char *)strdup("fest");
-  unsigned char * salt = (unsigned char *)strdup("fest");
+  unsigned char * pwd = (unsigned char *)strdup("the password");
+  unsigned char * salt = (unsigned char *)strdup("the salt");
 
-  int result = LYRA2(K, kLen, pwd, 4, salt, 4, 2, 1000, 256);
+  int result = LYRA2(K, kLen, pwd, strlen(pwd), salt, strlen(salt), 2, 1000, 256);
 
   if (result != 0) {
     printf("lyra2 failed: %d", result);
