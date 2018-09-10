@@ -27,7 +27,7 @@ typedef unsigned char byte ;
 #endif
 
 #ifndef nPARALLEL
-        #define nPARALLEL 2                                     //Number of parallel threads
+        #define nPARALLEL 1                                     //Number of parallel threads
 #endif
 
 #define ROW_LEN_INT64 (BLOCK_LEN_INT64 * N_COLS)                //Total length of a row: N_COLS blocks
