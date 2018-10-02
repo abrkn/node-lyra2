@@ -51,16 +51,16 @@ NAN_METHOD(Hash) {
 
   int c = info[4]->NumberValue();
 
-  char * password = node::Buffer::Data(password_buffer);
-  char * salt = node::Buffer::Data(salt_buffer);
+  void * password = node::Buffer::Data(password_buffer);
+  void * salt = node::Buffer::Data(salt_buffer);
 
   uint32_t password_len = node::Buffer::Length(password_buffer);
   uint32_t salt_len = node::Buffer::Length(salt_buffer);
 
   Local<Object> output_buffer = Nan::NewBuffer(32).ToLocalChecked();
-  char * output = node::Buffer::Data(output_buffer);
+  void * output = node::Buffer::Data(output_buffer);
 
-  int result = LYRA2((unsigned char * )output, 32, (unsigned char * )password, password_len, (unsigned char * )salt, salt_len, t, r, c);
+  int result = LYRA2(output, 32, password, password_len, salt, salt_len, t, r, c);
 
   if (result != 0) {
     Nan::ThrowError("Non-zero return code from LYRA2");
